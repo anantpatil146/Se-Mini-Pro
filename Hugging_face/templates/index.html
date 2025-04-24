@@ -1,0 +1,491 @@
+{% extends 'base.html' %}
+
+{% block title %}RecruitAI - Smart Recruitment Platform{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-content">
+        <h1>Transform Your Hiring Process</h1>
+        <p>AI-powered recruitment that finds the perfect match between candidates and positions</p>
+        <a href="#resume-analyzer" class="cta-button">Try Resume Analyzer</a>
+    </div>
+    <div class="hero-image">
+        <div class="ai-graphic">
+            <i class="fas fa-robot"></i>
+            <div class="orbit">
+                <div class="node node1"><i class="fas fa-file-alt"></i></div>
+                <div class="node node2"><i class="fas fa-user-tie"></i></div>
+                <div class="node node3"><i class="fas fa-chart-line"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="resume-analyzer" class="resume-analyzer">
+    <div class="section-header">
+        <h2>Resume Analyzer</h2>
+        <p>Upload a resume and ask questions to extract key information</p>
+    </div>
+    
+    <div class="analyzer-container">
+        <div class="upload-container" id="uploadSection">
+            <div class="upload-area" id="dropArea">
+                <i class="fas fa-file-upload"></i>
+                <h3>Upload Resume</h3>
+                <p>Drop your PDF file here or click to browse</p>
+                <input type="file" id="resumeUpload" accept=".pdf" style="display: none;">
+                <button class="browse-button">Browse Files</button>
+            </div>
+            <div id="uploadStatus" class="upload-status"></div>
+        </div>
+        
+        <div class="analysis-container" id="analysisSection" style="display: none;">
+            <div class="file-info">
+                <i class="fas fa-file-pdf"></i>
+                <span id="fileName">resume.pdf</span>
+                <button id="changeFile" class="small-button"><i class="fas fa-sync-alt"></i> Change</button>
+            </div>
+            
+            <div class="tabs">
+                <button class="tab-button active" data-tab="questionTab">Ask Questions</button>
+                <button class="tab-button" data-tab="jobMatchTab">Job Match</button>
+            </div>
+            
+            <div id="questionTab" class="tab-content active">
+                <div class="input-group">
+                    <label for="questionInput">Ask about the resume:</label>
+                    <div class="question-input-group">
+                        <input type="text" id="questionInput" placeholder="e.g., What are this candidate's technical skills?">
+                        <button id="askButton" class="action-button"><i class="fas fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                
+                <div class="quick-questions">
+                    <span class="quick-question" data-question="What are this candidate's top skills?">Top skills</span>
+                    <span class="quick-question" data-question="Summarize the candidate's work experience">Work experience</span>
+                    <span class="quick-question" data-question="What is the candidate's educational background?">Education</span>
+                    <span class="quick-question" data-question="What technologies is the candidate proficient in?">Technologies</span>
+                </div>
+                
+                <div id="responseArea" class="response-area">
+                    <div class="placeholder-text">
+                        <i class="fas fa-robot"></i>
+                        <p>Ask a question to get insights from the resume</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="jobMatchTab" class="tab-content">
+                <div class="input-group">
+                    <label for="jobDescription">Enter job description to find match:</label>
+                    <textarea id="jobDescription" placeholder="Paste the job description here..."></textarea>
+                </div>
+                
+                <button id="matchButton" class="primary-button">
+                    <i class="fas fa-percentage"></i> Calculate Match
+                </button>
+                
+                <div id="matchResultArea" class="response-area">
+                    <div class="placeholder-text">
+                        <i class="fas fa-briefcase"></i>
+                        <p>Enter a job description to see how well this resume matches</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="features" class="features">
+    <div class="section-header">
+        <h2>Platform Features</h2>
+        <p>Streamline your recruitment process with our AI-powered tools</p>
+    </div>
+    
+    <div class="feature-cards">
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-file-search"></i>
+            </div>
+            <h3>Smart Resume Parsing</h3>
+            <p>Extract key information from resumes with advanced AI analysis</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-puzzle-piece"></i>
+            </div>
+            <h3>Job Matching</h3>
+            <p>Find the perfect candidate-position fit with semantic matching</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-chart-network"></i>
+            </div>
+            <h3>Skill Analysis</h3>
+            <p>Identify skill gaps and strengths with comprehensive evaluations</p>
+        </div>
+        
+        <div class="feature-card">
+            <div class="feature-icon">
+                <i class="fas fa-comments"></i>
+            </div>
+            <h3>Interview Assistance</h3>
+            <p>Generate personalized interview questions based on candidate profiles</p>
+        </div>
+    </div>
+</section>
+
+<section id="about" class="about">
+    <div class="section-header">
+        <h2>About RecruitAI</h2>
+        <p>Next-generation recruitment powered by artificial intelligence</p>
+    </div>
+    
+    <div class="about-content">
+        <div class="about-text">
+            <p>RecruitAI leverages cutting-edge language models and semantic search to revolutionize how companies find and evaluate talent. Our platform saves recruiters countless hours by automating the resume screening process and providing deep insights into candidate profiles.</p>
+            <p>Built with modern AI technologies including large language models and vector embeddings, our system understands the nuances of job requirements and candidate qualifications beyond simple keyword matching.</p>
+        </div>
+        <div class="about-image">
+            <div class="tech-stack">
+                <div class="tech-icon"><i class="fas fa-brain"></i></div>
+                <div class="tech-icon"><i class="fas fa-database"></i></div>
+                <div class="tech-icon"><i class="fas fa-code"></i></div>
+                <div class="tech-icon"><i class="fas fa-chart-network"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Tab switching
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const tabId = button.dataset.tab;
+            
+            // Deactivate all tabs
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabContents.forEach(content => content.classList.remove('active'));
+            
+            // Activate selected tab
+            button.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+    
+    // File upload handling
+    const dropArea = document.getElementById('dropArea');
+    const resumeUpload = document.getElementById('resumeUpload');
+    const uploadStatus = document.getElementById('uploadStatus');
+    const uploadSection = document.getElementById('uploadSection');
+    const analysisSection = document.getElementById('analysisSection');
+    const fileName = document.getElementById('fileName');
+    const changeFileBtn = document.getElementById('changeFile');
+    const browseButton = document.querySelector('.browse-button');
+    
+    // Trigger file input when clicking the browse button
+    browseButton.addEventListener('click', () => {
+        resumeUpload.click();
+    });
+    
+    // Handle file drop
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, preventDefaults, false);
+    });
+    
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+    
+    ['dragenter', 'dragover'].forEach(eventName => {
+        dropArea.addEventListener(eventName, highlight, false);
+    });
+    
+    ['dragleave', 'drop'].forEach(eventName => {
+        dropArea.addEventListener(eventName, unhighlight, false);
+    });
+    
+    function highlight() {
+        dropArea.classList.add('highlight');
+    }
+    
+    function unhighlight() {
+        dropArea.classList.remove('highlight');
+    }
+    
+    dropArea.addEventListener('drop', handleDrop, false);
+    
+    function handleDrop(e) {
+        const dt = e.dataTransfer;
+        const files = dt.files;
+        handleFiles(files);
+    }
+    
+    resumeUpload.addEventListener('change', function() {
+        handleFiles(this.files);
+    });
+    
+    function handleFiles(files) {
+        if (files.length > 0) {
+            const file = files[0];
+            if (file.type === 'application/pdf') {
+                uploadFile(file);
+            } else {
+                showUploadError('Please upload a PDF file');
+            }
+        }
+    }
+    
+    function uploadFile(file) {
+        const formData = new FormData();
+        formData.append('resume', file);
+        
+        showUploadProgress('Uploading resume...');
+        
+        fetch('/upload', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showUploadSuccess('Resume uploaded successfully!');
+                fileName.textContent = data.filename;
+                uploadSection.style.display = 'none';
+                analysisSection.style.display = 'block';
+            } else {
+                showUploadError(data.error || 'Upload failed');
+            }
+        })
+        .catch(error => {
+            showUploadError('Error: ' + error.message);
+        });
+    }
+    
+    function showUploadProgress(message) {
+        uploadStatus.innerHTML = `<div class="progress"><i class="fas fa-spinner fa-spin"></i> ${message}</div>`;
+    }
+    
+    function showUploadSuccess(message) {
+        uploadStatus.innerHTML = `<div class="success"><i class="fas fa-check-circle"></i> ${message}</div>`;
+    }
+    
+    function showUploadError(message) {
+        uploadStatus.innerHTML = `<div class="error"><i class="fas fa-exclamation-circle"></i> ${message}</div>`;
+    }
+    
+    // Change file button
+    changeFileBtn.addEventListener('click', () => {
+        uploadSection.style.display = 'block';
+        analysisSection.style.display = 'none';
+        resetAnalysis();
+        
+        // Clear session on the server
+        fetch('/clear', {
+            method: 'POST'
+        });
+    });
+    
+    // Question handling
+    const questionInput = document.getElementById('questionInput');
+    const askButton = document.getElementById('askButton');
+    const responseArea = document.getElementById('responseArea');
+    const quickQuestions = document.querySelectorAll('.quick-question');
+    
+    askButton.addEventListener('click', () => {
+        askQuestion(questionInput.value);
+    });
+    
+    questionInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            askQuestion(questionInput.value);
+        }
+    });
+    
+    quickQuestions.forEach(question => {
+        question.addEventListener('click', () => {
+            const q = question.dataset.question;
+            questionInput.value = q;
+            askQuestion(q);
+        });
+    });
+    
+    function askQuestion(question) {
+        if (!question.trim()) return;
+        
+        // Show loading state
+        responseArea.innerHTML = `
+            <div class="response-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Analyzing resume...</p>
+            </div>
+        `;
+        
+        fetch('/analyze', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: question })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayResponse(question, data.answer, data.sources);
+            } else {
+                showResponseError(data.error || 'Analysis failed');
+            }
+        })
+        .catch(error => {
+            showResponseError('Error: ' + error.message);
+        });
+    }
+    
+    function displayResponse(question, answer, sources) {
+        let sourcesHtml = '';
+        if (sources && sources.length > 0) {
+            sourcesHtml = `
+                <div class="response-sources">
+                    <small>Sources: ${sources.join(', ')}</small>
+                </div>
+            `;
+        }
+        
+        const responseHtml = `
+            <div class="response-item">
+                <div class="response-question">
+                    <i class="fas fa-user"></i>
+                    <p>${question}</p>
+                </div>
+                <div class="response-answer">
+                    <i class="fas fa-robot"></i>
+                    <div>
+                        <p>${answer}</p>
+                        ${sourcesHtml}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Check if we already have content other than placeholder
+        if (responseArea.querySelector('.placeholder-text')) {
+            responseArea.innerHTML = responseHtml;
+        } else {
+            responseArea.innerHTML += responseHtml;
+        }
+        
+        // Clear input
+        questionInput.value = '';
+        
+        // Scroll to bottom of response area
+        responseArea.scrollTop = responseArea.scrollHeight;
+    }
+    
+    function showResponseError(message) {
+        responseArea.innerHTML = `
+            <div class="response-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>${message}</p>
+            </div>
+        `;
+    }
+    
+    function resetAnalysis() {
+        responseArea.innerHTML = `
+            <div class="placeholder-text">
+                <i class="fas fa-robot"></i>
+                <p>Ask a question to get insights from the resume</p>
+            </div>
+        `;
+        
+        document.getElementById('matchResultArea').innerHTML = `
+            <div class="placeholder-text">
+                <i class="fas fa-briefcase"></i>
+                <p>Enter a job description to see how well this resume matches</p>
+            </div>
+        `;
+        
+        questionInput.value = '';
+        document.getElementById('jobDescription').value = '';
+    }
+    
+    // Job matching
+    const jobDescription = document.getElementById('jobDescription');
+    const matchButton = document.getElementById('matchButton');
+    const matchResultArea = document.getElementById('matchResultArea');
+    
+    matchButton.addEventListener('click', () => {
+        const description = jobDescription.value.trim();
+        if (!description) return;
+        
+        // Show loading state
+        matchResultArea.innerHTML = `
+            <div class="response-loading">
+                <i class="fas fa-spinner fa-spin"></i>
+                <p>Calculating match...</p>
+            </div>
+        `;
+        
+        fetch('/job-match', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ jobDescription: description })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                displayMatchResult(data.match_analysis);
+            } else {
+                showMatchError(data.error || 'Job matching failed');
+            }
+        })
+        .catch(error => {
+            showMatchError('Error: ' + error.message);
+        });
+    });
+    
+    function displayMatchResult(analysis) {
+        // Try to extract a percentage if present in the analysis
+        let percentageMatch = 'N/A';
+        const percentageRegex = /(\d+)%/;
+        const match = analysis.match(percentageRegex);
+        if (match) {
+            percentageMatch = match[0];
+        }
+        
+        matchResultArea.innerHTML = `
+            <div class="match-result">
+                <div class="match-percentage">
+                    <div class="percentage-display">${percentageMatch}</div>
+                    <p>Match Rate</p>
+                </div>
+                <div class="match-analysis">
+                    <h4>Analysis</h4>
+                    <p>${analysis}</p>
+                </div>
+            </div>
+        `;
+    }
+    
+    function showMatchError(message) {
+        matchResultArea.innerHTML = `
+            <div class="response-error">
+                <i class="fas fa-exclamation-triangle"></i>
+                <p>${message}</p>
+            </div>
+        `;
+    }
+});
+</script>
+{% endblock %}
