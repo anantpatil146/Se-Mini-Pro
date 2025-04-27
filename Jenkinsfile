@@ -17,6 +17,7 @@ pipeline {
             steps {
                 // Install Python and Node.js
                 sh '''
+                sudo su
                 sudo apt-get update -y
                 sudo apt-get install -y python3-pip python3-venv nodejs npm
                 python3 -m pip install --upgrade pip
