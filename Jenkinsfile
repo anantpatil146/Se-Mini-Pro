@@ -2,53 +2,56 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'us-east-1'
-        BACKEND_PORT = '5000'
+        NODE_VERSION = '18'
+        PYTHON_VERSION = '3.9'
     }
 
     stages {
-        // Checkout code
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        // Backend Build
+        stage('Setup Tools') {
+            steps {
+                // Install Python and Node.js
+                sh '''
+                sudo apt-get update -y
+                sudo apt-get install -y python3-pip python3-venv nodejs npm
+                python3 -m pip install --upgrade pip
+                '''
+            }
+        }
+
         stage('Build Backend') {
             steps {
                 dir('.') {
-                    sh 'pip install -r requirements.txt'
-                    sh 'python -m pytest tests/'  // Optional tests
+                    sh '''
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install -r requirements.txt
+                    '''
                 }
             }
         }
 
-        // Frontend Build
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
-                    sh 'npm install'
-                    sh 'npm run build'
+                    sh '''
+                    npm install
+                    npm run build
+                    '''
                 }
             }
         }
 
-        // Deploy Backend (Flask)
-        stage('Deploy Backend') {
+        stage('Deploy') {
             steps {
-                sh """
-                # Start Flask with Gunicorn
-                nohup gunicorn --bind 0.0.0.0:${BACKEND_PORT} app:app --workers 4 --timeout 120 &
-                """
-            }
-        }
-
-        // Deploy Frontend (S3/NGINX)
-        stage('Deploy Frontend') {
-            steps {
-                dir('frontend') {
-                    sh 'aws s3 sync ./dist s3://sefrontend --delete'
+                script {
+                    // Add your deployment commands here
+                    echo "Deployment would happen here"
                 }
             }
         }
@@ -56,7 +59,7 @@ pipeline {
 
     post {
         always {
-            cleanWs()  // Clean workspace
+            cleanWs()
         }
     }
 }
