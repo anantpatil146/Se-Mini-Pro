@@ -9,28 +9,18 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
+                // Checkout the latest code from the repository
                 checkout scm
-            }
-        }
-
-        stage('Setup Tools') {
-            steps {
-                // Install Python and Node.js
-                sh '''
-                sudo su
-                sudo apt-get update -y
-                sudo apt-get install -y python3-pip python3-venv nodejs npm
-                python3 -m pip install --upgrade pip
-                '''
             }
         }
 
         stage('Build Backend') {
             steps {
                 dir('.') {
+                    // Install required Python dependencies and run the backend app
                     sh '''
                     pip install -r requirements.txt
-                    python app.py
+                    python3 app.py &
                     '''
                 }
             }
@@ -39,6 +29,7 @@ pipeline {
         stage('Build Frontend') {
             steps {
                 dir('frontend') {
+                    // Install npm dependencies and build the frontend
                     sh '''
                     npm install
                     npm run build
@@ -59,6 +50,7 @@ pipeline {
 
     post {
         always {
+            // Clean up workspace after the job completes
             cleanWs()
         }
     }
